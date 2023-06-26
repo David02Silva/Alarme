@@ -1,0 +1,1 @@
+Primeiro Projeto utilizando um repositório, o objetivo é estar a trabalhar o projeto no Pc fixo e no Pc portátil!!
