@@ -11,6 +11,23 @@ body{
     color: white;
 }
 
+.stage-for-alarms{
+    width: 100vw;
+    height: auto;
+    min-height: 100vh;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1vw;
+    background-color: red;
+    justify-content: center;
+}
+
+
+
+
+
+
+
 /*Criação do Modelo da página do novo Alarme*/
 .new-alarm{
     width: 100vw;
@@ -19,6 +36,7 @@ body{
     display: flex;
     align-items: center;
     justify-content: center;
+    display: none;
 }
 .new-alarm--container{
     width: 40%;
@@ -30,6 +48,7 @@ body{
     flex-direction: column;
     align-items: center;
     position: relative;
+    padding: 0px 50px;
 }
 
 /*Titulo*/
@@ -42,15 +61,18 @@ body{
 
 /*Design das horas*/
 .new-alarm--timer{
-    width: 80%;
-    height: 80px;
-    margin-top: 90px;
+    width: 100%;
+    height: 100px;
+    margin-top: 120px;
     background-color: #222;
     border-radius: 5px;
     border: 2px solid rgb(255, 255, 255, 0.2);
     display: flex;
     align-items: center;
     justify-content: space-around;
+}
+.new-alarm--timer:focus, .new-alarm--timer:hover{
+    border-bottom: 2px solid orange;
 }
 .new-alarm-timer--hour,
 .new-alarm-timer--minute,
@@ -60,7 +82,7 @@ body{
     height: 100%;
     border-radius: 3px;
     text-align: center;
-    line-height: 78.4px;
+    line-height: 100px;
     font-size: 30px;
 }
 .new-alarm-timer--hour{
@@ -105,7 +127,7 @@ body{
     transform: translate(-50%, -50%);
 }
 .new-alarm-timer--hour--down{
-    top: 95px;
+    top: 112px;
     left: 50%;
     transform: translate(-50%, -50%) rotate(180deg);
 }
@@ -115,34 +137,137 @@ body{
     transform: translate(-50%, -50%);
 }
 .new-alarm-timer--minute--down{
-    top: 95px;
+    top: 112px;
     left: 50%;
     transform: translate(-50%, -50%) rotate(180deg);
 }
 
 /*Design da caixa de Texto para o Nome do Alarme*/
+.new-alarm--name-container{
+    width: 100%;
+    height: 35px;
+    margin-top: 15%;
+    display: inline-flex;
+    align-items: center;
+}
 .new-alarm--name{
-    width: 80%;
-    height: 25px;
+    width: 100%;
+    height: 100%;
     border-radius: 7px;
     border: none;
     border-bottom: 1px solid rgb(255, 255, 255, 0.5) ;
     background-color: #444;
-    font-size: 12px;
+    font-size: 16px;
     padding-left: 10px;
     color: white;
-    margin-top: 60px;
-    position: relative;
+    margin-left: 15px;
 }
 .new-alarm--name:focus{
     outline: none;
     border: none;
     border-bottom: 1px solid orange ;
 }
+.new-alarm--name-container label{
+    font-size: 22px;
+}
 
-/*Design dos botões da Semana*/
-.new-alarm--days--container{
-    
+/*Design da CheckBox*/
+.new-alarm--checkbox-container{
+    width: 100%;
+    margin-top: 30%;
+
+}
+.new-alarm--repeat{
+    position: relative;
+    cursor: pointer;
+    margin-right: 20px;
+    background-color: transparent;
+    margin-left: 11px;
+}
+.new-alarm--repeat:before{
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -5px;
+    width: 20px;
+    height: 20px;
+    background-color: #333;
+    border: 1px solid orange;
+}
+.new-alarm--repeat:checked::after{
+    content: "";
+    display: block;
+    position: absolute;
+    width: 5px;
+    height: 15px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+    top: -4px;
+    left: 9px;
 }
 
 
+/*Design dos botões da Semana*/
+.new-alarm--days--container{
+   width: 100%;
+   height: 10%;
+   margin-top: 15%;
+}
+.new-alarm--days--container ul{
+    display: inline-flex;
+    width: 100%;
+    height: 100%;
+    justify-content: space-around;
+}
+.new-alarm--days--container ul li{
+    list-style: none;
+    display: block;
+    width: 35px;
+    height: 35px;
+    line-height: 35px;
+    font-size: 13px;
+    text-align: center;
+    border-radius: 50%;
+    border: 1px solid orange;
+    cursor: pointer;
+}
+.new-alarm--days--container ul li:hover{
+    color: black;
+    background-color: orange;
+}
+.new-alarm--button--container{
+    width: 100%;
+    display: flex;
+    align-items: flex-end;
+    margin-top: auto;
+    margin-bottom: 5%;
+}
+.new-alarm--button-save, .new-alarm--button-cancel{
+    flex: 1;
+    height: 56px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #444;
+    margin: 0px 10px;
+    border-radius: 15px;
+    cursor: pointer;
+}
+.new-alarm--button-save{
+    background-color: orange;
+    color: black;
+}
+
+
+.alarm-object{
+    width: 100%;
+    height: 100%;
+    min-width: 400px;
+    max-width: 49vw;
+    display: flex;
+    flex-direction: column;
+    background-color: #333;
+    border-radius: 10px;
+}

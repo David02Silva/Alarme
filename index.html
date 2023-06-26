@@ -9,43 +9,119 @@
 <body>
 
     <div class="models">
+    </div>
 
-        <div class="new-alarm">
-            <div class="new-alarm--container">
-                <div class="new-alarm--title">Adicionar novo alarme</div>
-                <div class="new-alarm--timer">
-                    <div class="new-alarm--hour-container">
-                        <span class="new-alarm-timer--hour--up">^</span>
-                            <div class="new-alarm-timer--hour">07</div>
-                        <span class="new-alarm-timer--hour--down">^</span>
-                    </div>
-                    <span class="new-alarm-timer--two-points">:</span>
-                    <div class="new-alarm--minute-container">
-                        <span class="new-alarm-timer--minute--up">^</span>
-                            <div class="new-alarm-timer--minute">00</div>
-                        <span class="new-alarm-timer--minute--down">^</span>
-                    </div>
-                </div>
-                <input class="new-alarm--name" type="text" value="Alarme (1)"></input>
-                <div class="new-alarm--days--container">
-                    <ul>
-                        <li data-day="0">Do</li>
-                        <li data-day="1">Seg</li>
-                        <li data-day="2">Te</li>
-                        <li data-day="3">Qua</li>
-                        <li data-day="4">Qui</li>
-                        <li data-day="5">Sex</li>
-                        <li data-day="6">Sá</li>
-                    </ul>
-                </div>
-                <div class="new-alarm--button--container">
-                    <div class="new-alarm--button-save">Guardar</div>
-                    <div class="new-alarm--button-cancel">Cancelar</div>
-                </div>
-            </div>
+    <main class="stage-for-alarms">
+        
+
+        <div class="alarm-object">
+            <div class="alarm-object--hour">7:00</div>
+            <button class="alarm-object--on-off">Button</button>
+            <div class="alarm-object--time-left">13 horas, 2 minutos</div>
+            <div class="alarm-object--name">Alarme (1)</div>
+            <ul class="alarm-object--week-container">
+                    <li data-day="0">Do</li>
+                    <li data-day="1">Seg</li>
+                    <li data-day="2">Te</li>
+                    <li data-day="3">Qua</li>
+                    <li data-day="4">Qui</li>
+                    <li data-day="5">Sex</li>
+                    <li data-day="6">Sá</li>
+            </ul>
         </div>
 
+
+
+        <div class="alarm-object">
+            <div class="alarm-object--hour">7:00</div>
+            <button class="alarm-object--on-off">Button</button>
+            <div class="alarm-object--time-left">13 horas, 2 minutos</div>
+            <div class="alarm-object--name">Alarme (1)</div>
+            <ul class="alarm-object--week-container">
+                    <li data-day="0">Do</li>
+                    <li data-day="1">Seg</li>
+                    <li data-day="2">Te</li>
+                    <li data-day="3">Qua</li>
+                    <li data-day="4">Qui</li>
+                    <li data-day="5">Sex</li>
+                    <li data-day="6">Sá</li>
+            </ul>
+        </div>
+        <div class="alarm-object">
+            <div class="alarm-object--hour">7:00</div>
+            <button class="alarm-object--on-off">Button</button>
+            <div class="alarm-object--time-left">13 horas, 2 minutos</div>
+            <div class="alarm-object--name">Alarme (1)</div>
+            <ul class="alarm-object--week-container">
+                    <li data-day="0">Do</li>
+                    <li data-day="1">Seg</li>
+                    <li data-day="2">Te</li>
+                    <li data-day="3">Qua</li>
+                    <li data-day="4">Qui</li>
+                    <li data-day="5">Sex</li>
+                    <li data-day="6">Sá</li>
+            </ul>
+        </div>
+        <div class="alarm-object">
+            <div class="alarm-object--hour">7:00</div>
+            <button class="alarm-object--on-off">Button</button>
+            <div class="alarm-object--time-left">13 horas, 2 minutos</div>
+            <div class="alarm-object--name">Alarme (1)</div>
+            <ul class="alarm-object--week-container">
+                    <li data-day="0">Do</li>
+                    <li data-day="1">Seg</li>
+                    <li data-day="2">Te</li>
+                    <li data-day="3">Qua</li>
+                    <li data-day="4">Qui</li>
+                    <li data-day="5">Sex</li>
+                    <li data-day="6">Sá</li>
+            </ul>
+        </div>
+    </main>
+
+    <div class="new-alarm">
+        <div class="new-alarm--container">
+            <div class="new-alarm--title">Adicionar novo alarme</div>
+            <div class="new-alarm--timer">
+                <div class="new-alarm--hour-container">
+                    <span class="new-alarm-timer--hour--up">^</span>
+                        <div class="new-alarm-timer--hour">07</div>
+                    <span class="new-alarm-timer--hour--down">^</span>
+                </div>
+                <span class="new-alarm-timer--two-points">:</span>
+                <div class="new-alarm--minute-container">
+                    <span class="new-alarm-timer--minute--up">^</span>
+                        <div class="new-alarm-timer--minute">00</div>
+                    <span class="new-alarm-timer--minute--down">^</span>
+                </div>
+            </div>
+            <div class="new-alarm--name-container">
+                <label for="alarm-name" title="Alarm Name">📝</label>
+                <input class="new-alarm--name" title="Alarm Name" type="text" value="Alarme (1)" name="alarm-name"></input>
+            </div>
+
+            <div class="new-alarm--checkbox-container">
+                <input class="new-alarm--repeat" type="checkbox" name="repetir-alarm">
+                <label for="repetir-alarm">Repetir Alarme</label>
+            </div>
+            <div class="new-alarm--days--container">
+                <ul>
+                    <li data-day="0">Do</li>
+                    <li data-day="1">Seg</li>
+                    <li data-day="2">Te</li>
+                    <li data-day="3">Qua</li>
+                    <li data-day="4">Qui</li>
+                    <li data-day="5">Sex</li>
+                    <li data-day="6">Sá</li>
+                </ul>
+            </div>
+            <div class="new-alarm--button--container">
+                <div class="new-alarm--button-save">💾 Guardar</div>
+                <div class="new-alarm--button-cancel">🗙 Cancelar</div>
+            </div>
+        </div>
     </div>
+
 
     <script src="script.js"></script>
 </body>
