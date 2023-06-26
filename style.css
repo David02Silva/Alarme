@@ -10,6 +10,8 @@ body{
     background-color: #222;
     color: white;
 }
+
+/*Criação do Modelo da página do novo Alarme*/
 .new-alarm{
     width: 100vw;
     height: 100vh;
@@ -20,6 +22,7 @@ body{
 }
 .new-alarm--container{
     width: 40%;
+    max-width: 450px;
     height: 80%;
     border-radius: 10px;
     background-color: #333;
@@ -28,13 +31,17 @@ body{
     align-items: center;
     position: relative;
 }
+
+/*Titulo*/
 .new-alarm--title{
     position: absolute;
     font-size: 18px;
     left: 20px;
     top:20px;
 }
-.new-alarm--timer--container{
+
+/*Design das horas*/
+.new-alarm--timer{
     width: 80%;
     height: 80px;
     margin-top: 90px;
@@ -45,17 +52,19 @@ body{
     align-items: center;
     justify-content: space-around;
 }
-
 .new-alarm-timer--hour,
 .new-alarm-timer--minute,
 .new-alarm-timer--two-points{
     display: inline-block;
-    width: 30%;
-    height: 98%;
+    width: 100%;
+    height: 100%;
     border-radius: 3px;
     text-align: center;
     line-height: 78.4px;
     font-size: 30px;
+}
+.new-alarm-timer--hour{
+    position: relative;
 }
 .new-alarm-timer--hour:hover,
 .new-alarm-timer--minute:hover{
@@ -64,6 +73,14 @@ body{
 .new-alarm-timer--two-points{
     width: 5%;
 }
+
+.new-alarm--hour-container, .new-alarm--minute-container{
+    width: 30%;
+    height: 98%;
+    position: relative;
+}
+
+/*Design dos botões das horas*/
 .new-alarm-timer--hour--up,
 .new-alarm-timer--hour--down,
 .new-alarm-timer--minute--up,
@@ -83,23 +100,27 @@ body{
     color: white;
 }
 .new-alarm-timer--hour--up{
-    top: 11%;
-    left: 22%;
+    top: -20px;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 .new-alarm-timer--hour--down{
-    top: 29.5%;
-    left: 22%;
-    transform: rotate(180deg);
+    top: 95px;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(180deg);
 }
 .new-alarm-timer--minute--up{
-    top: 11%;
-    right: 24%;
+    top: -20px;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 .new-alarm-timer--minute--down{
-    transform: rotate(180deg);
-    top: 29.5%;
-    right: 24%;
+    top: 95px;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(180deg);
 }
+
+/*Design da caixa de Texto para o Nome do Alarme*/
 .new-alarm--name{
     width: 80%;
     height: 25px;
@@ -117,6 +138,11 @@ body{
     outline: none;
     border: none;
     border-bottom: 1px solid orange ;
+}
+
+/*Design dos botões da Semana*/
+.new-alarm--days--container{
+    
 }
 
 
