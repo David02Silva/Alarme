@@ -1,32 +1,124 @@
-const qr = (element)=> document.querySelector(element);
+/*
+    Sistem for the User create the Alarms by him self
+*/
 
-let modelAlarm = [
-    {id: 0, hour: "10:00", name: "Alarme(1)", onOf: "on", timeLeft: "10 horas e 5 min", week: [0, 2]},
-    {id: 1, hour: "05:00", name: "Teste", onOf: "off", timeLeft: "5 horas e 5 min", week: [4,6]},
-    {id: 2, hour: "20:00", name: "Alarme", onOf: "on", timeLeft: "10 horas e 5 min", week: [1,3]},
-    {id: 3, hour: "04:00", name: "Alarme(5)", onOf: "on", timeLeft: "10 horas e 5 min", week: [5]}
-]
 
-modelAlarm.map((item, index) =>{
+// Creating the alarm with the display "new-alarm"
 
-    let alarmItem = qr(".models .alarm-object").cloneNode(true);
-    alarmItem.querySelector(".alarm-object--hour").innerHTML = item.hour;
-    alarmItem.querySelector(".alarm-object--name").innerHTML = item.name;
 
-    alarmItem.querySelector(".alarm-object--on-off").classList.remove("on", "off")
-    alarmItem.querySelector(".alarm-object--on-off").classList.add(item.onOf);
-    alarmItem.querySelector(".alarm-object--time-left").innerHTML = item.timeLeft;
+let hourTime = 0;
+let minTime = 0;
+let saved = false;
+let alarmName = "";
+let weekList = [];
 
-    alarmItem.querySelectorAll(".alarm-object--week-container li").forEach(element => {
-        element.classList.remove("selected");
-        if(element.getAttribute("data-day") == parseFloat(item.week)){
-            element.classList.add("selected");
-            console.log(element)
+
+qr(`.add-edit--add`).addEventListener("click", newAlarm)
+qr(`.new-alarm--button-save`).addEventListener("click", saveAlarm)
+
+function newAlarm(){
+    hourTime = 0;
+    minTime = 0;
+    alarmName = "";
+    weekList = [];
+
+    qr(".new-alarm--name").value = "";
+    qr(`.new-alarm`).style.display = "flex";
+
+
+    setTimer()
+    setDays()
+}
+
+
+function setDays(){
+    document.querySelectorAll(".new-alarm--days--container ul li").forEach(li =>{
+        li.addEventListener("click", ()=>{
+            if(li.classList.contains("selected")){
+                li.classList.remove("selected");
+                weekList.splice(weekList.indexOf(parseInt(li.getAttribute("data-day"))), 1)
+    
+            }else{
+                li.classList.add("selected")
+                weekList.push(parseInt(li.getAttribute("data-day")))
+            }
+            
+        })
+    })
+}
+
+function setTimer(){
+    if(saved == false){
+    qr(".new-alarm-timer--hour").innerHTML = hourTime;
+    qr(".new-alarm-timer--minute").innerHTML = minTime;
+
+    //UpHour
+    qr(".new-alarm-timer--hour--up").addEventListener("click", ()=>{
+        if(hourTime < 23){
+            hourTime++;
+            qr(".new-alarm-timer--hour").innerHTML = hourTime;
+        }else{
+            hourTime = 0;
+            qr(".new-alarm-timer--hour").innerHTML = hourTime;
+            
         }
-       
-    });
-    qr(".stage-for-alarms").append(alarmItem);
+        
+    })
+
+    //DownHour
+    qr(".new-alarm-timer--hour--down").addEventListener("click", ()=>{
+        if(hourTime <= 0){
+            hourTime = 23;
+            qr(".new-alarm-timer--hour").innerHTML = hourTime;
+        }else{
+            hourTime--;
+            qr(".new-alarm-timer--hour").innerHTML = hourTime;
+        }
+
+    })
+
+      //UpMin
+      qr(".new-alarm-timer--minute--up").addEventListener("click", ()=>{
+        if(minTime < 59){
+            minTime++;
+            qr(".new-alarm-timer--minute").innerHTML = minTime;
+        }else{
+            minTime = 0;
+            qr(".new-alarm-timer--minute").innerHTML = minTime;
+            
+        }
+        
+    })
+
+    //DownMin
+    qr(".new-alarm-timer--minute--down").addEventListener("click", ()=>{
+        if(minTime <= 0){
+            minTime = 59;
+            qr(".new-alarm-timer--minute").innerHTML = minTime;
+        }else{
+            minTime--;
+            qr(".new-alarm-timer--minute").innerHTML = minTime;
+        }
+
+    })
+    } else{
+        hourTime = 0;
+        minTime = 0;
+        qr(".new-alarm-timer--hour").innerHTML = hourTime;
+        qr(".new-alarm-timer--minute").innerHTML = minTime;    
+        return
+    }
+    
+}
 
 
-       
-})
+
+function saveAlarm(){
+    console.log(`${hourTime} horas e ${minTime} minutos`)
+    alarmName = qr(".new-alarm--name").value;
+    console.log(`Nome do Alarme: ${alarmName}`)
+    console.log(`Week Selected: ${weekList}`)
+
+    qr(`.new-alarm`).style.display = "none"
+    saved = true;
+}
