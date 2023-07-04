@@ -5,7 +5,7 @@
 
 // Creating the alarm with the display "new-alarm"
 
-
+const qr = (element)=> document.querySelector(element);
 let hourTime = 0;
 let minTime = 0;
 let saved = false;
@@ -114,8 +114,23 @@ function setTimer(){
 
 
 function saveAlarm(){
-    console.log(`${hourTime} horas e ${minTime} minutos`)
     alarmName = qr(".new-alarm--name").value;
+    let alarm = {
+        id: modelAlarm.length,
+        hour: `${hourTime}:${minTime}`,
+        name: alarmName,
+        onOf: "on",
+        timeLeft: "",
+        week: weekList
+    }
+    modelAlarm.push(alarm)
+    console.log(modelAlarm)
+    updateScreen()
+    
+
+    //    {id: 0, hour: "10:00", name: "Alarme(1)", onOf: "on", timeLeft: "10 horas e 5 min", week: [0, 2]}
+
+    console.log(`${hourTime} horas e ${minTime} minutos`)
     console.log(`Nome do Alarme: ${alarmName}`)
     console.log(`Week Selected: ${weekList}`)
 
