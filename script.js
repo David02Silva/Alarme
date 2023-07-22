@@ -49,18 +49,24 @@ function setDays(){
 
 function setTimer(){
     if(saved == false){
-    qr(".new-alarm-timer--hour").innerHTML = hourTime;
-    qr(".new-alarm-timer--minute").innerHTML = minTime;
+    qr(".new-alarm-timer--hour").innerHTML = "0" + hourTime;
+    qr(".new-alarm-timer--minute").innerHTML = "0" + minTime;
 
+  
     //UpHour
     qr(".new-alarm-timer--hour--up").addEventListener("click", ()=>{
         if(hourTime < 23){
             hourTime++;
             qr(".new-alarm-timer--hour").innerHTML = hourTime;
+            if(hourTime < 10){
+                qr(".new-alarm-timer--hour").innerHTML = "0" + hourTime
+            }
         }else{
             hourTime = 0;
             qr(".new-alarm-timer--hour").innerHTML = hourTime;
-            
+            if(hourTime < 10){
+                qr(".new-alarm-timer--hour").innerHTML = "0" + hourTime
+            }
         }
         
     })
@@ -70,9 +76,15 @@ function setTimer(){
         if(hourTime <= 0){
             hourTime = 23;
             qr(".new-alarm-timer--hour").innerHTML = hourTime;
+            if(hourTime < 10){
+                qr(".new-alarm-timer--hour").innerHTML = "0" + hourTime
+            }
         }else{
             hourTime--;
             qr(".new-alarm-timer--hour").innerHTML = hourTime;
+            if(hourTime < 10){
+                qr(".new-alarm-timer--hour").innerHTML = "0" + hourTime
+            }
         }
 
     })
@@ -82,10 +94,15 @@ function setTimer(){
         if(minTime < 59){
             minTime++;
             qr(".new-alarm-timer--minute").innerHTML = minTime;
+            if(minTime < 10){
+                qr(".new-alarm-timer--minute").innerHTML = "0" + minTime;
+            }
         }else{
             minTime = 0;
             qr(".new-alarm-timer--minute").innerHTML = minTime;
-            
+            if(minTime < 10){
+                qr(".new-alarm-timer--minute").innerHTML = "0" + minTime;
+            }
         }
         
     })
@@ -95,9 +112,15 @@ function setTimer(){
         if(minTime <= 0){
             minTime = 59;
             qr(".new-alarm-timer--minute").innerHTML = minTime;
+            if(minTime < 10){
+                qr(".new-alarm-timer--minute").innerHTML = "0" + minTime;
+            }
         }else{
             minTime--;
             qr(".new-alarm-timer--minute").innerHTML = minTime;
+            if(minTime < 10){
+                qr(".new-alarm-timer--minute").innerHTML = "0" + minTime;
+            }
         }
 
     })
@@ -114,6 +137,12 @@ function setTimer(){
 
 
 function saveAlarm(){
+    if(hourTime < 10){
+        hourTime = "0" + hourTime
+    }
+    if(minTime < 10){
+        minTime = "0" + minTime
+    }
     alarmName = qr(".new-alarm--name").value;
     let alarm = {
         id: modelAlarm.length,
@@ -124,16 +153,12 @@ function saveAlarm(){
         week: weekList
     }
     modelAlarm.push(alarm)
-    console.log(modelAlarm)
+    qr(".stage-for-alarms").innerHTML = "";
     updateScreen()
     
 
     //    {id: 0, hour: "10:00", name: "Alarme(1)", onOf: "on", timeLeft: "10 horas e 5 min", week: [0, 2]}
-
-    console.log(`${hourTime} horas e ${minTime} minutos`)
-    console.log(`Nome do Alarme: ${alarmName}`)
-    console.log(`Week Selected: ${weekList}`)
-
+    
     qr(`.new-alarm`).style.display = "none"
     saved = true;
 }

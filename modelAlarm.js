@@ -27,7 +27,6 @@ function updateScreen(){
     
                 if(newDate < actualDate){
                     newDate.setDate(newDate.getDate() + 1)
-                    console.log("É Menor!!")
                 }
     
                 let toMinAtu = (actualDate.getHours() * 60) + actualDate.getMinutes()
@@ -55,7 +54,6 @@ function updateScreen(){
                 let result = `${diffHour} horas e ${diffMin} minutos`
                 item.timeLeft = result
                 alarmItem.querySelector(".alarm-object--time-left").innerHTML = item.timeLeft;
-                console.log(result)
             
             }
             setInterval(function(){interval()}, 10000)
@@ -71,8 +69,8 @@ function updateScreen(){
                 li.classList.add(`selected`);
             }
         })
-        
         qr(".stage-for-alarms").append(alarmItem);
+
     });
     
 }
