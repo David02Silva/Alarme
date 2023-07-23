@@ -85,11 +85,19 @@ function updateScreen(){
     
                 let diffDay =  newDate.getDate() - actualDate.getDate() -1 ;
                 let result = `${diffDay} dias, ${diffHour} horas e ${diffMin} minutos`
+
                 if(diffDay == 0 || diffDay < 0){
                     result = `${diffHour} horas e ${diffMin} minutos`
                 }else{
                     result = `${diffDay} dias, ${diffHour} horas e ${diffMin} minutos`
                 }
+
+                if(diffHour <=  0){
+                    result = `${diffMin} minutos`
+                } if(diffHour == 1){
+                    result = `${diffHour} hora e ${diffMin} minutos`
+                }
+
                 item.timeLeft = result
                 alarmItem.querySelector(".alarm-object--time-left").innerHTML = item.timeLeft;
             

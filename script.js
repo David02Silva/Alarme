@@ -11,6 +11,7 @@ let minTime = 0;
 let saved = false;
 let alarmName = "";
 let weekList = [];
+let setDaysCount = 0;
 
 
 qr(`.add-edit--add`).addEventListener("click", newAlarm)
@@ -20,34 +21,34 @@ function newAlarm(){
     hourTime = 0;
     minTime = 0;
     alarmName = "";
-    weekList = [];
 
     qr(".new-alarm--name").value = "";
     qr(`.new-alarm`).style.display = "flex";
 
-
-    setTimer()
-    document.querySelectorAll(".new-alarm--days--container ul li").forEach(li =>{
-        li.classList.remove("selected")
-    })
+    setDaysCount++;
     setDays()
+    setTimer()
+
 }
 
 
 function setDays(){
-    document.querySelectorAll(".new-alarm--days--container ul li").forEach(li =>{
-        li.addEventListener("click", ()=>{
-            if(li.classList.contains("selected")){
-                li.classList.remove("selected");
-                weekList.splice(weekList.indexOf(parseInt(li.getAttribute("data-day"))), 1)
+    if(setDaysCount == 1){
+        document.querySelectorAll(".new-alarm--days--container ul li").forEach(li =>{
+            li.addEventListener("click", ()=>{
+                if(li.classList.contains("selected") == false){
+                    weekList.push(parseInt(li.getAttribute("data-day")))
+                    li.classList.add("selected")
+                } else{
+                    weekList.splice(weekList.indexOf(parseInt(li.getAttribute("data-day"))), 1);
+                    li.classList.remove("selected");    
+                }
+            })
     
-            }if(li.classList.contains("selected") == false){
-                li.classList.add("selected")
-                weekList.push(parseInt(li.getAttribute("data-day")))
-            }
-            
         })
-    })
+    }else{
+        return
+    }
 }
 
 function setTimer(){
@@ -158,10 +159,10 @@ function saveAlarm(){
     modelAlarm.push(alarm)
     qr(".stage-for-alarms").innerHTML = "";
     updateScreen()
-    
+    weekList = [];
+    document.querySelectorAll(".new-alarm--days--container ul li").forEach(li => li.classList.remove("selected"))
 
     //    {id: 0, hour: "10:00", name: "Alarme(1)", onOf: "on", timeLeft: "10 horas e 5 min", week: [0, 2]}
-    
     qr(`.new-alarm`).style.display = "none"
     saved = true;
 }
