@@ -27,6 +27,9 @@ function newAlarm(){
 
 
     setTimer()
+    document.querySelectorAll(".new-alarm--days--container ul li").forEach(li =>{
+        li.classList.remove("selected")
+    })
     setDays()
 }
 
@@ -38,7 +41,7 @@ function setDays(){
                 li.classList.remove("selected");
                 weekList.splice(weekList.indexOf(parseInt(li.getAttribute("data-day"))), 1)
     
-            }else{
+            }if(li.classList.contains("selected") == false){
                 li.classList.add("selected")
                 weekList.push(parseInt(li.getAttribute("data-day")))
             }

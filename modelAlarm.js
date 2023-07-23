@@ -21,13 +21,45 @@ function updateScreen(){
             let hourMin = item.hour.split(":");
             let hour = hourMin[0]
             let min = hourMin[1];
+            let day = 0;
             let interval = () =>{
                 let actualDate = new Date();
                 let newDate = new Date(actualDate.getFullYear(), actualDate.getMonth(), actualDate.getDate(), hour, min);
+              
+              
+                
+                    let goal = actualDate.getDay();
+
+                    if(item.week.length > 0){
+                        var closestWeek = item.week.reduce((accumulator, currentValue) => {
+                            if(currentValue == goal){
+                                return currentValue;
+                            }
+                            Array.min = function(array){
+                                return Math.min.apply(Math, array);
+                            };
+                            if(currentValue > goal){
+                                return Array.min(item.week)
+                            }
+                        })
+                    }if(item.week.length == 0){
+                        closestWeek = 0;
+                    }
+                    if(closestWeek != 0){
+                        if(closestWeek > newDate.getDay()){
+                            let diff = closestWeek - newDate.getDay();
+                            newDate.setDate(newDate.getDate() + diff)
+                        }
+                        if(closestWeek < newDate.getDay()){
+                            let bigDiff = newDate.getDay() - closestWeek;
+                            newDate.setDate((newDate.getDate() + 7) - bigDiff)
+                        }
+                    } if(closestWeek == 0){
+                        newDate.setDate(actualDate.getDate())
+                    }
+
+
     
-                if(newDate < actualDate){
-                    newDate.setDate(newDate.getDate() + 1)
-                }
     
                 let toMinAtu = (actualDate.getHours() * 60) + actualDate.getMinutes()
                 let toMinDef = (newDate.getHours()* 60) + newDate.getMinutes()
@@ -51,10 +83,19 @@ function updateScreen(){
                     diffHour = Math.floor((diff / 60) + 24) 
                 }
     
-                let result = `${diffHour} horas e ${diffMin} minutos`
+                let diffDay =  newDate.getDate() - actualDate.getDate() -1 ;
+                let result = `${diffDay} dias, ${diffHour} horas e ${diffMin} minutos`
+                if(diffDay == 0 || diffDay < 0){
+                    result = `${diffHour} horas e ${diffMin} minutos`
+                }else{
+                    result = `${diffDay} dias, ${diffHour} horas e ${diffMin} minutos`
+                }
                 item.timeLeft = result
                 alarmItem.querySelector(".alarm-object--time-left").innerHTML = item.timeLeft;
             
+                if(diff == 0){
+                    alert(`O Alarme: ${item.name} ${item.hour}`)
+                }
             }
             setInterval(function(){interval()}, 10000)
             interval()
