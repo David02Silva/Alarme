@@ -292,7 +292,26 @@ body{
 }
 
 /*Botão OnOf*/
-.alarm-object--on-off{
+.alarm--deleteBt{
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    font-size: 30px;
+    cursor: pointer;
+    display: none;
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    line-height: 40px;
+    background-color: transparent;
+    color: white;
+    border: none;
+
+}
+.alarm--deleteBt:hover{
+    background-color: #222;
+}
+.alarm-object--on-off {
 position: absolute;
 right: 20px;
 top: 20px;
@@ -379,7 +398,7 @@ transition: 200ms All ease-in-out;
     justify-content: space-evenly;
     align-items: center;
 }
-.add-edit--add, .add-edit--edit{
+.add-edit--add, .add-edit--edit, .add-edit--check{
     width: 40%;
     height: 90%;
     border-radius: 10px;
@@ -389,10 +408,14 @@ transition: 200ms All ease-in-out;
     font-size: 35px;
     font-weight: 100;
     cursor: pointer;
+    text-align: center;
 }
-.add-edit--edit{
+.add-edit--edit, .add-edit--check{
     font-size: 20px;
 }
-.add-edit--add:hover, .add-edit--edit:hover{
+.add-edit--check{
+    display: none;
+}
+.add-edit--add:hover, .add-edit--check:hover, .add-edit--edit:hover{
     background-color: #333;
 }

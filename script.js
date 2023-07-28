@@ -16,6 +16,49 @@ let setDaysCount = 0;
 
 qr(`.add-edit--add`).addEventListener("click", newAlarm)
 qr(`.new-alarm--button-save`).addEventListener("click", saveAlarm)
+qr(`.add-edit--edit`).addEventListener("click", editAlarm)
+
+function editAlarm(){
+    if(modelAlarm.length > 0){
+        var alarms = document.querySelectorAll(".stage-for-alarms .alarm-object")
+        let buttEdit = document.querySelector(".add-edit--edit");
+
+
+        if(this.style.display !=  "none"){
+            this.style.display = "none";
+            qr(".add-edit--check").style.display = "block"
+
+            alarms.forEach(alarm => {
+                let onOffButt = alarm.querySelector(".alarm-object--on-off");
+                onOffButt.style.display = "none"
+
+                var trash = alarm.querySelector(".alarm--deleteBt")
+                trash.style.display = "block"
+
+                trash.addEventListener("click", ()=>{
+                    modelAlarm.splice(parseInt(alarm.getAttribute("data-id")), 1)
+                    alarm.remove()
+                    console.log(modelAlarm)
+                })
+            })
+        }
+        qr(".add-edit--check").addEventListener("click", ()=>{
+            qr(".add-edit--check").style.display = "none"
+            qr(".add-edit--edit").style.display = "block"
+            
+
+            alarms.forEach(alarm => {
+                let onOffButt = alarm.querySelector(".alarm-object--on-off");
+                
+                alarm.querySelector(".alarm--deleteBt").style.display = "none"
+                onOffButt.style.display = "block";
+                
+
+            })
+        })
+    }
+}
+        
 
 function newAlarm(){
     hourTime = 0;
@@ -24,6 +67,8 @@ function newAlarm(){
 
     qr(".new-alarm--name").value = "";
     qr(`.new-alarm`).style.display = "flex";
+    qr(`.new-alarm--button-cancel`).addEventListener("click", ()=>{qr(`.new-alarm`).style.display = "none";})
+    
 
     setDaysCount++;
     setDays()
@@ -41,7 +86,8 @@ function setDays(){
                     li.classList.add("selected")
                 } else{
                     weekList.splice(weekList.indexOf(parseInt(li.getAttribute("data-day"))), 1);
-                    li.classList.remove("selected");    
+                    li.classList.remove("selected");
+                    qr(".new-alarm--checkbox-container .new-alarm--repeat")
                 }
             })
     

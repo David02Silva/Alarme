@@ -10,11 +10,12 @@ let modelAlarm = [
 function updateScreen(){
     modelAlarm.map((item, index) =>{
 
-        let alarmItem = qr(".models .alarm-object").cloneNode(true);
+        var alarmItem = qr(".models .alarm-object").cloneNode(true);
         alarmItem.querySelector(".alarm-object--hour").innerHTML = item.hour;
         alarmItem.querySelector(".alarm-object--name").innerHTML = item.name;
         alarmItem.querySelector(".alarm-object--on-off").classList.remove("on", "off")
         alarmItem.querySelector(".alarm-object--on-off").classList.add(item.onOf);
+        alarmItem.setAttribute("data-id", item.id)
         timeLeft()
 
         function timeLeft(){
