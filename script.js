@@ -79,15 +79,28 @@ function newAlarm(){
 
 function setDays(){
     if(setDaysCount == 1){
-        document.querySelectorAll(".new-alarm--days--container ul li").forEach(li =>{
+        var weeks = document.querySelectorAll(".new-alarm--days--container ul li")
+        var weekArray = Object.values(weeks)
+
+
+        weeks.forEach(li =>{
             li.addEventListener("click", ()=>{
                 if(li.classList.contains("selected") == false){
                     weekList.push(parseInt(li.getAttribute("data-day")))
                     li.classList.add("selected")
+
+                    if(weekArray.some((item)=> item.classList.contains("selected"))){
+                        qr(".new-alarm--repeat").checked = true;  
+                    }
+
                 } else{
                     weekList.splice(weekList.indexOf(parseInt(li.getAttribute("data-day"))), 1);
                     li.classList.remove("selected");
                     qr(".new-alarm--checkbox-container .new-alarm--repeat")
+                    
+                    if(weekArray.some((item)=> item.classList.contains("selected")) == false){
+                        qr(".new-alarm--repeat").checked = false;   
+                    }
                 }
             })
     
