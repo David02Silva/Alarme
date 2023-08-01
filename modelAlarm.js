@@ -27,35 +27,36 @@ function updateScreen(){
                 let actualDate = new Date();
                 let newDate = new Date(actualDate.getFullYear(), actualDate.getMonth(), actualDate.getDate(), hour, min);
 
-           
-              
-              
+                let weekSelect = item.week.find((item)=>{
+                    return item >= actualDate.getDay()
+                })
+                if(weekSelect === undefined){
+                    weekSelect = Math.min(...item.week)
+                }
+
+                if(weekSelect > actualDate.getDay()){
+                    let diff = weekSelect - actualDate.getDay();
+                    newDate.setDate(newDate.getDate() + diff)
+                    console.log(newDate)
+                }
+                if(weekSelect < actualDate.getDay()){
+                    newDate.setDate((newDate.getDate() + 7) - (actualDate.getDay() - weekSelect))
+                    console.log(newDate)
+                }
+                if(weekSelect == actualDate.getDay() && newDate.getHours() >= actualDate.getHours() ){
+                    newDate.setDate(actualDate.getDate())
+                    console.log(newDate)
+                }
+                if(weekSelect == actualDate.getDay() && newDate.getHours() < actualDate.getHours()){
+                    newDate.setDate(newDate.getDate() + 7)
+                    console.log(newDate)
+                }
                 
-                    let goal = actualDate.getDay();
-                    if(item.week.length > 0){
-                        var closestWeek = item.week.reduce((accumulator, currentValue) => {
-                            if(currentValue == goal){
-                                return currentValue;
-                            }
-                            Array.min = function(array){
-                                return Math.min.apply(Math, array);
-                            };
-                            if(currentValue > goal){
-                                return Array.min(item.week)
-                            }
-                        })
-                    
-                    }
-                    if(closestWeek != actualDate.getDay()){
-                        if(closestWeek > newDate.getDay()){
-                            let diff = closestWeek - newDate.getDay();
-                            newDate.setDate(newDate.getDate() + diff - 1)
-                        }
-                        if(closestWeek < newDate.getDay()){
-                            let bigDiff = closestWeek - newDate.getDay();
-                            newDate.setDate(newDate.getDate() + (closestWeek + 6))
-                        }
-                    } 
+
+
+
+
+
 
                 let toMinAtu = (actualDate.getHours() * 60) + actualDate.getMinutes()
                 let toMinDef = (newDate.getHours()* 60) + newDate.getMinutes()
@@ -79,16 +80,15 @@ function updateScreen(){
                     diffHour = Math.floor((diff / 60) + 24) 
                 }
     
-                let diffDay =  (newDate.getDay() - actualDate.getDay());
+                let diffDay =  (newDate.getDate() - actualDate.getDate() - 1);
 
-                console.log(`Nova Data: ${newDate.getDay()}  :: Data Atual: ${actualDate.getDay()}  :: O Resultado: ${diffDay}`)
+                // console.log(`Nova Data: ${newDate.getDay()}  :: Data Atual: ${actualDate.getDay()}  :: O Resultado: ${diffDay}`)
                 let result = `${diffDay} dias, ${diffHour} horas e ${diffMin} minutos`
 
                 if(diffDay == 0){
                     result = `${diffHour} horas e ${diffMin} minutos`
                 }
                 if(diffDay < 0 ){
-                    diffDay  = diffDay + 6;
                     result = `${diffDay} dias, ${diffHour} horas e ${diffMin} minutos`
                 }
                 if(diffDay > 0){
