@@ -220,6 +220,8 @@ function saveAlarm(){
     updateScreen()
     weekList = [];
     document.querySelectorAll(".new-alarm--days--container ul li").forEach(li => li.classList.remove("selected"))
+    qr(".new-alarm--repeat").checked = false; 
+
 
     //    {id: 0, hour: "10:00", name: "Alarme(1)", onOf: "on", timeLeft: "10 horas e 5 min", week: [0, 2]}
     qr(`.new-alarm`).style.display = "none"
