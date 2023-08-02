@@ -26,31 +26,37 @@ function updateScreen(){
             let interval = () =>{
                 let actualDate = new Date();
                 let newDate = new Date(actualDate.getFullYear(), actualDate.getMonth(), actualDate.getDate(), hour, min);
-
-                let weekSelect = item.week.find((item)=>{
-                    return item >= actualDate.getDay()
-                })
-                if(weekSelect === undefined){
-                    weekSelect = Math.min(...item.week)
+                
+                if(item.week.length > 0){
+                    let weekSelect = item.week.find((item)=>{
+                        return item >= actualDate.getDay()
+                    })
+                    if(weekSelect === undefined){
+                        weekSelect = Math.min(...item.week)
+                    }
+    
+                    if(weekSelect > actualDate.getDay()){
+                        let diff = weekSelect - actualDate.getDay();
+                        newDate.setDate(newDate.getDate() + diff)
+                        console.log(newDate)
+                    }
+                    if(weekSelect < actualDate.getDay()){
+                        newDate.setDate((newDate.getDate() + 7) - (actualDate.getDay() - weekSelect))
+                        console.log(newDate)
+                    }
+                    if(weekSelect == actualDate.getDay() && newDate.getHours() >= actualDate.getHours() ){
+                        newDate.setDate(actualDate.getDate())
+                        console.log(newDate)
+                    }
+                    if(weekSelect == actualDate.getDay() && newDate.getHours() < actualDate.getHours()){
+                        newDate.setDate(newDate.getDate() + 7)
+                        console.log(newDate)
+                    }
+                }else{
+                    newDate.setDate(actualDate.getDate() + 1)
                 }
-
-                if(weekSelect > actualDate.getDay()){
-                    let diff = weekSelect - actualDate.getDay();
-                    newDate.setDate(newDate.getDate() + diff)
-                    console.log(newDate)
-                }
-                if(weekSelect < actualDate.getDay()){
-                    newDate.setDate((newDate.getDate() + 7) - (actualDate.getDay() - weekSelect))
-                    console.log(newDate)
-                }
-                if(weekSelect == actualDate.getDay() && newDate.getHours() >= actualDate.getHours() ){
-                    newDate.setDate(actualDate.getDate())
-                    console.log(newDate)
-                }
-                if(weekSelect == actualDate.getDay() && newDate.getHours() < actualDate.getHours()){
-                    newDate.setDate(newDate.getDate() + 7)
-                    console.log(newDate)
-                }
+                
+                
                 
 
 
@@ -79,7 +85,7 @@ function updateScreen(){
                     diffMin = ((diff - 1440) % 60) + 60 ;
                     diffHour = Math.floor((diff / 60) + 24) 
                 }
-    
+            
                 let diffDay =  (newDate.getDate() - actualDate.getDate() - 1);
 
                 // console.log(`Nova Data: ${newDate.getDay()}  :: Data Atual: ${actualDate.getDay()}  :: O Resultado: ${diffDay}`)
