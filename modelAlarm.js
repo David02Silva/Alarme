@@ -18,6 +18,25 @@ function updateScreen(){
         alarmItem.setAttribute("data-id", item.id)
         timeLeft()
 
+
+        let buttonOnOff = alarmItem.querySelector(".alarm-object--on-off");
+        buttonOnOff.addEventListener("click", ()=>{
+            if(buttonOnOff.classList.contains("on")){
+                buttonOnOff.classList.remove("on")
+                buttonOnOff.classList.add("off")
+                buttonOnOff.setAttribute("title", "Off")
+                alarmItem.classList.add("off")
+                return
+            }
+
+            if(buttonOnOff.classList.contains("off")){
+                buttonOnOff.classList.remove("off")
+                buttonOnOff.classList.add("on")
+                buttonOnOff.setAttribute("title", "On")
+                alarmItem.classList.remove("off")
+                return
+            }
+        })
         function timeLeft(){
             let hourMin = item.hour.split(":");
             let hour = hourMin[0]
@@ -95,7 +114,7 @@ function updateScreen(){
                     result = `${diffHour} horas e ${diffMin} minutos`
                 }
                 if(diffDay < 0 ){
-                    result = `${diffDay} dias, ${diffHour} horas e ${diffMin} minutos`
+                    result = `${diffHour} horas e ${diffMin} minutos`
                 }
                 if(diffDay > 0){
                     result = `${diffDay} dias, ${diffHour} horas e ${diffMin} minutos`
@@ -111,7 +130,7 @@ function updateScreen(){
                 item.timeLeft = result
                 alarmItem.querySelector(".alarm-object--time-left").innerHTML = item.timeLeft;
             
-                if(diff == 0){
+                if(diff == 0 && buttonOnOff.classList.contains("on")){
                     alert(`O Alarme: ${item.name} ${item.hour}`)
                 }
             }

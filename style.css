@@ -280,6 +280,9 @@ body{
     position: relative;
     transition: 200ms ease-in-out;
 }
+.alarm-object.off{
+    color: #555;
+}
 /*Animação de hover*/
 .alarm-object:hover{
     transform: translate(0px, -5px);
@@ -320,6 +323,7 @@ height: 22px;
 border-radius: 15px;
 border: none;
 transition: 200ms All ease-in-out;
+cursor: pointer;
 }
 /*Estilo do Botão caso esteja On*/
 .alarm-object--on-off.on{

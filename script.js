@@ -64,7 +64,6 @@ function newAlarm(){
     hourTime = 0;
     minTime = 0;
     alarmName = "";
-
     qr(".new-alarm--name").value = "";
     qr(`.new-alarm`).style.display = "flex";
     qr(`.new-alarm--button-cancel`).addEventListener("click", ()=>{qr(`.new-alarm`).style.display = "none";})
@@ -111,13 +110,63 @@ function setDays(){
 }
 
 function setTimer(){
+    let number = "";
     if(saved == false){
-    qr(".new-alarm-timer--hour").innerHTML = "0" + hourTime;
-    qr(".new-alarm-timer--minute").innerHTML = "0" + minTime;
+    qr(".new-alarm-timer--hour").innerHTML = "00";
+    qr(".new-alarm-timer--minute").innerHTML = "00";
 
-  
+  qr(".new-alarm-timer--hour").addEventListener("mouseover", ()=>{
+    this.addEventListener("keyup", (key)=>{
+        if(key.keyCode <= 57 && key.keyCode >= 48 ){
+            
+            if(number.length < 2 && number <= 23){
+                number += key.key
+                if(number <= 23){
+                    qr(".new-alarm-timer--hour").innerHTML = number;
+                    hourTime = number;
+                }else{
+                    qr(".new-alarm-timer--hour").innerHTML = "00";
+                   hourTime = 0;
+                }
+                console.log(number)
+                
+            }else{
+                number = "";
+                number += key.key
+                console.log(number)
+            }
+        }
+    })
+  })
+
+
+
+  qr(".new-alarm-timer--minute").addEventListener("mouseover", ()=>{
+    this.addEventListener("keyup", (key)=>{
+        if(key.keyCode <= 57 && key.keyCode >= 48 ){
+            
+            if(number.length < 2 && number <= 59){
+                number += key.key
+                if(number <= 23){
+                    qr(".new-alarm-timer--minute").innerHTML = number;
+                    hourTime = number;
+                }else{
+                    qr(".new-alarm-timer--minute").innerHTML = "00";
+                   hourTime = 0;
+                }
+                console.log(number)
+                
+            }else{
+                number = "";
+                number += key.key
+                console.log(number)
+            }
+        }
+    })
+  })
     //UpHour
     qr(".new-alarm-timer--hour--up").addEventListener("click", ()=>{
+        this.selected = true
         if(hourTime < 23){
             hourTime++;
             qr(".new-alarm-timer--hour").innerHTML = hourTime;
@@ -190,12 +239,17 @@ function setTimer(){
     } else{
         hourTime = 0;
         minTime = 0;
-        qr(".new-alarm-timer--hour").innerHTML = hourTime;
-        qr(".new-alarm-timer--minute").innerHTML = minTime;    
+        if(hourTime < 10){
+            qr(".new-alarm-timer--hour").innerHTML = "0" + hourTime;
+        }
+        if(minTime < 10){
+            qr(".new-alarm-timer--minute").innerHTML = "0" + minTime;    
+        }
         return
     }
     
 }
+
 
 
 
